@@ -2,12 +2,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Home from './components/Home';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-// import Router from 'react-router/BrowserRouter';
-// import Match from 'react-router/Match';
-// import Link from 'react-router/Link';
+import Home from './components/Home';
+import Movie from './components/Movie';
 
 class App extends Component {
   render() {
@@ -20,7 +18,10 @@ class App extends Component {
           </div>
 
           <div className="container">
-            <Route path="/" exact component={Home} />
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/movies/:movieId" component={Movie} />
+            </Switch>
           </div>
         </div>
       </Router>
