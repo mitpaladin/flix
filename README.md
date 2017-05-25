@@ -109,6 +109,10 @@ Having the markup, and the components encapsulating the markup, use one of the p
 
 It would be interesting, and relatively straightforward, to spin up a `Dockerfile` to run the app (and/or the app tests) in a Docker image. Among other things, this would serve as a "self-hosting CI setup" by proving that no unknown/undocumented dependencies on the development system are required for the app and its tests to run correctly. Additionally, in line wiht the [*Data Source*](#data-source) item above, running the data source in a separate Docker container orchestrated by `docker-compose` or equivalent would give more confidence in the separation of the details of the data source from the app itself.
 
+# Contributions
+
+* [Charles Du](https://github.com/mitpaladin) contributed materially to the progress of this development, specifically to [Commit `23e0424`](https://github.com/jdickey/flix/commit/23e0424).
+
 # License
 
 This repository contains code directly adapted from that published in a [tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4) whose only (boilerplate) copyright notice at the time this repository was published reads *COPYRIGHT 2017 BY SIGIENT. ALL RIGHTS RESERVED.*
