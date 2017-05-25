@@ -91,7 +91,7 @@ Done in 3.62s.
 ```
 Aside from the value of tests as confidence-builders when making further changes (proving that nothing unexpectedly broke as a result of those changes), they also tend to reduce the severity of cargo-cult programming simply by serving as an aid to [rubber-duck debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging). Therefore, prior to undertaking any of the other possible future enhancements detailled below, getting test coverage up to 100% except for well-known, defined areas (see the `--collectCoverageFrom` option values in the `coverage` script definition in `package.json`) is *urgently* recommended.
 
-__Patch requests *will not* be merged without test coverage of the new or modified code.__
+__Pull requests *will not* be merged without test coverage of the new or modified code.__
 
 ## Linting
 
