@@ -9,6 +9,9 @@
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
+    "enzyme": "^2.8.2",
+    "jest-enzyme": "2.x",
+    "react-addons-test-utils": "^15.5.1",
     "react-scripts": "canary"
   },
   "scripts": {
