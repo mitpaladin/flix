@@ -3,8 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import movies from '../movies.json';
 
-const Movie = ({ params: { movieId } }) => {
-  console.log('Movie.js entry: movieId', movieId);
+const Movie = ({ match: { params: { movieId } } }) => {
   const movie = movies.find(
     movie => movie.id === parseInt(movieId, 10)
   );
@@ -49,8 +48,10 @@ const Movie = ({ params: { movieId } }) => {
 };
 
 Movie.propTypes = {
-  params: PropTypes.shape({
-    movieId: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      movieId: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
