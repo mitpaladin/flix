@@ -1,12 +1,27 @@
 {
   "name": "flix",
   "version": "0.1.0",
+  "homepage": "https://github.com/jdickey/flix",
+  "license": "MIT",
+  "author": {
+    "name": "Jeff Dickey",
+    "url": "https://jdickey.github.io"
+  },
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jdickey/flix.git"
+  },
+  "engines": {
+    "node": ">=6.9.0 <8.0.0",
+    "npm": ">= 4.2.0"
+  },
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "4.x",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "enzyme": "^2.8.2",
