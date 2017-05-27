@@ -74,7 +74,7 @@ Each of these can be argued as beyond the scope of the original tutorial, but wo
 
 ## Linting
 
-Another standard tool is a *linter,* which checks for correctness and style.[ESLint](http://eslint.org) is he most widely used at present, with configurations for the two most widely-used styles ([AirBNB](https://github.com/airbnb/javascript) and the self-styled [Javascript Standard Style](https://standardjs.com)), as well as plugins for all sorts of things. In any configuration, ESLint will report dozens (nearly a hundred) errors against the [now-current commit](https://github.com/jdickey/flix/commit/87b8b50). These should probably be fixed, and linting added to a standard continuous-integration setup to ensure that no new errors are introduced.
+Another standard tool is a *linter,* which checks for correctness and style. [ESLint](http://eslint.org) is he most widely used at present, with configurations for the two most widely-used styles ([AirBNB](https://github.com/airbnb/javascript) and the self-styled [Javascript Standard Style](https://standardjs.com)), as well as plugins for all sorts of things. In any configuration, ESLint will report dozens (nearly a hundred) errors against the [now-current commit](https://github.com/jdickey/flix/commit/87b8b50). These should probably be fixed, and linting added to a standard continuous-integration setup to ensure that no new errors are introduced.
 
 ## Data Source
 
