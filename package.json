@@ -1,6 +1,6 @@
 {
   "name": "flix",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "homepage": "https://github.com/jdickey/flix",
   "license": "MIT",
   "author": {
@@ -27,7 +27,7 @@
     "enzyme": "^2.8.2",
     "jest-enzyme": "2.x",
     "react-addons-test-utils": "^15.5.1",
-    "react-scripts": "canary"
+    "react-scripts": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
