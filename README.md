@@ -4,12 +4,14 @@
 
 - [Introduction](#introduction)
   * [The Objective of the Exercise](#the-objective-of-the-exercise)
+- [Beyond the Tutorial](#beyond-the-tutorial)
+  * [Test Coverage](#test-coverage)
 - [Possible Future Enhancements](#possible-future-enhancements)
-  * [Testing](#testing)
   * [Linting](#linting)
   * [Data Source](#data-source)
   * [Design Language, or CSS Framework](#design-language-or-css-framework)
   * [Docker](#docker)
+- [Contributions](#contributions)
 - [License](#license)
 
 # Introduction
@@ -42,56 +44,33 @@ What we have here is a demonstration of one component (`App`) that associates pa
 
 `tl;dr` No, [not exactly](https://youtu.be/EuOHHA0KTww).
 
+# Beyond the Tutorial
+
+We've embarked on a series of enhancements that go beyond the narrowest focus of repairing the code from the original tutorial, to include things that we'd expect in any production-quality application (even a personal side project). In doing so, we repeatedly experience situations where, had these tools or techniques been integrated properly into the original tutorial, the result would have been easier (and likely faster) to develop, easier for new people (like the readers of a tutorial) to come up to speed on, and easier to maintain in the face of toolchain changes.
+
+The first such enhancement is obviously the use of source control (here, via Git), without which you would not be reading this document. Among other benefits, it encourages *incremental, reversible* change; if you've made a hash of the latest bit of effort, simply revert to your most recent known-good commit and try again. If your tools change in ways that break existing APIs, source control enables you to clearly document and communicate what's broken and what changes were needed to get everything working again. It boggles our minds, as experienced software developers, to consider how anyone could embark on even a toy project since the early 1990s without some form or degree of source control, yet even twenty-five years on, it still happens.
+
+## Test Coverage
+
+Continuing on, how do you know what the "most recent known-good commit" is, or even that something you've changed broke something else? Through your tests. The tutorial used [Create React App](https://github.com/facebookincubator/create-react-app) (referred to as simply *CRA*) to generate the original app [scaffold](https://en.wikipedia.org/wiki/Scaffold_(programming)). CRA creates a single `App.test.js` test file with a single (initially passing) smoke test; as with the scaffolded tests in, say, [Ruby on Rails](http://guides.rubyonrails.org/testing.html#rails-sets-up-for-testing-from-the-word-go), a single test is meant as encouragement for the developer to write more. Unlike earlier versions of Rails scaffolding, CRA's tests, as generated, pass.
+
+The go-to tool for code coverage in JavaScript is [Istanbul](https://istanbul.js.org/); it has many wrappers and repackagings, including the `react-scripts` packaged within *Create React App*. To *run* test coverage, we've added a new `coverage` script to `package.json` that runs the command line
+
+```
+npm test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/service-worker-registration.js
+```
+
+The command-line options (passed to `react-scripts test` by dint of their separation from `npm test` by the `--` separator) should be fairly self-explanatory. We exclude `src/index.js` from coverage (on the grounds that, as boilerplate, it's too simple/invariant to test), as well as `src/service-worker-registration.js` (which is generated and used by CRA, but which we never touch nor knowingly depend on).
+
+Coverage is therefore improved from "all code required to render the default landing page" to "all code".
+
+Doing this in literal, explicit detail yields some spectacularly brittle tests, particularly in `src/component/Movie.test.js`; a test-first development style would almost certainly have yielded a tree of smaller components used by `Movie`. This would, among other benefits, enable a more incremental approach to a future implementation of a [design language](#design-language-or-css-framework). Without such a granular set of small components, such an endeavour becomes a Big Bang Rewrite; any progress is seen only after a relatively large effort, increasing the pressure to abandon the rewrite and just use the existing, brittle code. In a production system, this is a prime cause of eventually unsustainable [technical debt](https://www.martinfowler.com/bliki/TechnicalDebt.html).
+
+Henceforth, _pull requests **will not** be merged without test coverage of the new or modified code._
+
 # Possible Future Enhancements
 
-Each of these, with the exception of testing, can be argued as beyond the scope of the original tutorial, but would make interesting and/or useful enhancements to the state of the application in its [current state](https://github.com/jdickey/flix/commit/87b8b50). None of these was included, or even hinted at, in the [original tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4), which I tend to view as failings in that tutorial rather than "bling" to "weigh down" the development cycle. It should be noted that the tutorial made no use of Git, or any other version control system, despite the facts that **a)** no responsible developer starts a modern project without using source control, and **b)** as a tutorial, *especially* as a tutorial of bleeding-edge, not-yet-finalised technical tools, it is to be *expected* that the student will discover errors made at times and wish to go back to the last known-good build. Without source control, that can be highly problematic.
-
-## Testing
-
-Test coverage, as of Commit [87b8b50](https://github.com/jdickey/flix/commit/87b8b50), is predictably sub-minimal:
-
-```
-$ yarn coverage -- --color=false
-yarn coverage v0.24.5
-$ npm test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/service-worker-registration.js --color=false
-
-> flix@0.1.0 test /Users/jeffdickey/src/script/flix
-> react-scripts test --env=jsdom "--coverage" "--collectCoverageFrom=src/**/*.js" "--collectCoverageFrom=!src/index.js" "--collectCoverageFrom=!src/service-worker-registration.js" "--color=false"
-
-
- RUNS  ...App.test.js
-
-
- RUNS  ...App.test.js
-
-
- RUNS  ...App.test.js
-
-
- RUNS  ...App.test.js
-
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        1.169s
-Ran all test suites.
--------------------|----------|----------|----------|----------|----------------|
-File               |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
--------------------|----------|----------|----------|----------|----------------|
-All files          |    63.16 |      100 |       40 |    63.16 |                |
- src               |      100 |      100 |      100 |      100 |                |
-  App.js           |      100 |      100 |      100 |      100 |                |
- src/components    |    61.11 |      100 |    33.33 |    61.11 |                |
-  FeaturedMovie.js |      100 |      100 |      100 |      100 |                |
-  Home.js          |      100 |      100 |      100 |      100 |                |
-  Movie.js         |    33.33 |      100 |        0 |    33.33 |      7,8,11,37 |
-  Movies.js        |    33.33 |      100 |        0 |    33.33 |           7,16 |
-  PageNotFound.js  |       50 |      100 |        0 |       50 |              5 |
--------------------|----------|----------|----------|----------|----------------|
-Done in 3.62s.
-```
-Aside from the value of tests as confidence-builders when making further changes (proving that nothing unexpectedly broke as a result of those changes), they also tend to reduce the severity of cargo-cult programming simply by serving as an aid to [rubber-duck debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging). Therefore, prior to undertaking any of the other possible future enhancements detailled below, getting test coverage up to 100% except for well-known, defined areas (see the `--collectCoverageFrom` option values in the `coverage` script definition in `package.json`) is *urgently* recommended.
-
-__Pull requests *will not* be merged without test coverage of the new or modified code.__
+Each of these can be argued as beyond the scope of the original tutorial, but would make interesting and/or useful enhancements to the state of the application in its [current state](https://github.com/jdickey/flix/commit/87b8b50). None of these was included, or even hinted at, in the [original tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4), which I tend to view as failings in that tutorial rather than "bling" to "weigh down" the development cycle. It should be noted that the tutorial made no use of Git, or any other version control system, despite the facts that **a)** no responsible developer starts a modern project without using source control, and **b)** as a tutorial, *especially* as a tutorial of bleeding-edge, not-yet-finalised technical tools, it is to be *expected* that the student will discover errors made at times and wish to go back to the last known-good build. Without source control, that can be highly problematic.
 
 ## Linting
 
@@ -111,7 +90,7 @@ It would be interesting, and relatively straightforward, to spin up a `Dockerfil
 
 # Contributions
 
-* [Charles Du](https://github.com/mitpaladin) contributed materially to the progress of this development, specifically to [Commit `23e0424`](https://github.com/jdickey/flix/commit/23e0424).
+* [Charles Du](https://github.com/mitpaladin) contributed materially to the progress of this development, specifically to [Commit `23e0424`](https://github.com/jdickey/flix/commit/23e0424), which solved the problem of how to pass a parameter to a component invoked via a pattern-matching Route.
 
 # License
 
