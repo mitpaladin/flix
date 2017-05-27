@@ -9,7 +9,7 @@ const Movie = ({ match: { params: { movieId } } }) => {
   );
 
   return (
-    <div>
+    <div className="movie">
       <div className="movie-title">
         <h2>{movie.name}</h2>
 
