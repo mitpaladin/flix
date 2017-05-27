@@ -60,55 +60,40 @@ describe('<Movies />', () => {
         const listings = movieListings.children();
 
         it('has one child element', () => {
-          const checker = (prevVal, item) => {
-            return( prevVal && (item.children().length == 1));
-          };
-          const allValid = listings.reduce(checker, true);
-          expect(allValid).toBe(true);
+          const checker = (item) => { item.children().length === 1; };
+          expect(listings.filter(checker)).toHaveLength(0);
         });
 
         it('has a Link child element', () => {
-          const checker = (prevVal, item) => {
-            return( prevVal && (item.children().first().name() == 'Link'));
+          const checker = (item) => {
+            item.children().first().name() === 'Link';
           };
-          const allValid = listings.reduce(checker, true);
-          expect(allValid).toBe(true);
+          expect(listings.filter(checker)).toHaveLength(0);
         });
 
         describe('has a Link child element that', () => {
           it('has a "replace" prop with the value of {false}', () => {
-            const checker = (prevVal, item) => {
-              const actual = item.children().first().prop('replace');
-              return(prevVal && (actual === false));
+            const checker = (item) => {
+              item.children().first().prop('replace') === false;
             };
-            const allValid = listings.reduce(checker, true);
-            expect(allValid).toBe(true);
+            const actual = listings.filterWhere(checker);
+            expect(!!actual).toBe(true);
           });
 
           it('has a "to" prop matching "/movies/:id" with numeric ID', () => {
-            const checker = (prevVal, item) => {
+            const checker = (item) => {
               const childItem = item.children().first();
-              const actual = /^\/movies\/\d+$/.test(childItem.prop('to'));
-              return(prevVal && actual === true);
+              return(/^\/movies\/\d+$/.test(childItem.prop('to')));
             };
-            const allValid = listings.reduce(checker, true);
-            expect(allValid).toBe(true);
+            expect(listings.filter(checker)).toHaveLength(0);
           });
 
           it('has one child element', () => {
-            const checker = (prevVal, item) => {
-              const actual = item.children().first().children().length;
-              return(prevVal && (actual === 1));
+            const checker =  (item) => {
+              return (item.children().first().children().length !== 1);
             };
-            const allValid = listings.reduce(checker, true);
-            expect(allValid).toBe(true);
-            const el = listings.children().first();
-            console.log(listings.children().first().html());
+            expect(listings.filter(checker)).toHaveLength(0);
           });
-
-          describe('has one child element that', () => {
-            it('foo', () => {});
-          }); // describe('has one child element that'
         }); // it('has a Link child element that' ...)
       }); // describe('for each "movie-image" div child element'
     }); // describe('has a third child element that' ...)
