@@ -6,6 +6,8 @@ import { mount } from 'enzyme';
 
 import Movie from './Movie';
 
+/* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
+
 describe('<Movie ... />', () => {
   describe('when invoked with valid props including an existing ID', () => {
     /**

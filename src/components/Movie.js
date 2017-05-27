@@ -1,6 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import movies from '../movies.json';
 
 const Movie = ({ match: { params: { movieId } } }) => {
@@ -33,6 +34,8 @@ const Movie = ({ match: { params: { movieId } } }) => {
 
         <hr />
 
+        {/* eslint-disable react/no-array-index-key */}
+        {/* Normally a good idea; we don't (now) support reordering, etc. */}
         {movie.reviews.map((review, i) => (
           <div key={i} className="movie-review">
             <h3>
