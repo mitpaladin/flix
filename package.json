@@ -46,8 +46,8 @@
     "build": "react-scripts build",
     "coverage": "npm test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/service-worker-registration.js",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint-fix": "eslint --fix .",
+    "lint": "eslint public src",
+    "lint-fix": "eslint --fix public src",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }

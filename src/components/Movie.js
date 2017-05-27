@@ -5,7 +5,7 @@ import movies from '../movies.json';
 
 const Movie = ({ match: { params: { movieId } } }) => {
   const movie = movies.find(
-    movie => movie.id === parseInt(movieId, 10)
+    movie => movie.id === parseInt(movieId, 10),
   );
 
   return (
