@@ -1,11 +1,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import movies from '../movies.json';
 
 const Movie = ({ match: { params: { movieId } } }) => {
   const movie = movies.find(
-    movie => movie.id === parseInt(movieId, 10)
+    movie => movie.id === parseInt(movieId, 10),
   );
 
   return (
@@ -33,6 +34,8 @@ const Movie = ({ match: { params: { movieId } } }) => {
 
         <hr />
 
+        {/* eslint-disable react/no-array-index-key */}
+        {/* Normally a good idea; we don't (now) support reordering, etc. */}
         {movie.reviews.map((review, i) => (
           <div key={i} className="movie-review">
             <h3>

@@ -6,6 +6,8 @@ import { mount } from 'enzyme';
 
 import Movie from './Movie';
 
+/* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
+
 describe('<Movie ... />', () => {
   describe('when invoked with valid props including an existing ID', () => {
     /**
@@ -18,7 +20,7 @@ describe('<Movie ... />', () => {
      * "outermost" is **relative to the React root**, which itself is wrapped in
      * *another* containing, attribute-free div just because.
      */
-    const wrapper = mount(<Movie match={{params: { movieId: '1' } }} />);
+    const wrapper = mount(<Movie match={{ params: { movieId: '1' } }} />);
 
     it('generates a containing "movie" div', () => {
       const matches = wrapper.find('div.movie');

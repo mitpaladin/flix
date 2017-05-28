@@ -5,12 +5,14 @@ import { mount } from 'enzyme';
 
 import Movies from './Movies';
 
+/* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
+
 describe('<Movies />', () => {
   const initialEntries = ['/movies'];
   const wrapper = mount(
     <Router initialEntries={initialEntries}>
       <Movies />
-    </Router>
+    </Router>,
   );
 
   it('generates a containing ".all-movies" div', () => {
@@ -83,15 +85,13 @@ describe('<Movies />', () => {
           it('has a "to" prop matching "/movies/:id" with numeric ID', () => {
             const checker = (item) => {
               const childItem = item.children().first();
-              return(/^\/movies\/\d+$/.test(childItem.prop('to')));
+              return (/^\/movies\/\d+$/.test(childItem.prop('to')));
             };
             expect(listings.filter(checker)).toHaveLength(0);
           });
 
           it('has one child element', () => {
-            const checker =  (item) => {
-              return (item.children().first().children().length !== 1);
-            };
+            const checker = item => (item.children().first().children().length !== 1);
             expect(listings.filter(checker)).toHaveLength(0);
           });
         }); // it('has a Link child element that' ...)

@@ -6,8 +6,8 @@
   * [The Objective of the Exercise](#the-objective-of-the-exercise)
 - [Beyond the Tutorial](#beyond-the-tutorial)
   * [Test Coverage](#test-coverage)
-- [Possible Future Enhancements](#possible-future-enhancements)
   * [Linting](#linting)
+- [Possible Future Enhancements](#possible-future-enhancements)
   * [Data Source](#data-source)
   * [Design Language, or CSS Framework](#design-language-or-css-framework)
   * [Docker](#docker)
@@ -68,13 +68,13 @@ Doing this in literal, explicit detail yields some spectacularly brittle tests, 
 
 Henceforth, _pull requests **will not** be merged without test coverage of the new or modified code._
 
+## Linting
+
+Another standard tool is a *linter,* which checks for correctness and style. [ESLint](http://eslint.org) is he most widely used at present, with configurations for the two most widely-used styles ([AirBNB](https://github.com/airbnb/javascript) and the self-styled [Javascript Standard Style](https://standardjs.com)), as well as plugins for all sorts of things. In any configuration, ESLint with the plugins we've identified as immediately useful (see Issue [#4](https://github.com/jdickey/flix/issues/4)) reported several *hundred* errors against the [last commit](https://github.com/jdickey/flix/commit/87b8b50) merged to `master` before linting. Fixing these and adding linting to our standard continuous-integration setup helps to ensure that no new errors, indicating code smells and likely bugs, are introduced.
+
 # Possible Future Enhancements
 
 Each of these can be argued as beyond the scope of the original tutorial, but would make interesting and/or useful enhancements to the state of the application in its [current state](https://github.com/jdickey/flix/commit/87b8b50). None of these was included, or even hinted at, in the [original tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4), which I tend to view as failings in that tutorial rather than "bling" to "weigh down" the development cycle. It should be noted that the tutorial made no use of Git, or any other version control system, despite the facts that **a)** no responsible developer starts a modern project without using source control, and **b)** as a tutorial, *especially* as a tutorial of bleeding-edge, not-yet-finalised technical tools, it is to be *expected* that the student will discover errors made at times and wish to go back to the last known-good build. Without source control, that can be highly problematic.
-
-## Linting
-
-Another standard tool is a *linter,* which checks for correctness and style.[ESLint](http://eslint.org) is he most widely used at present, with configurations for the two most widely-used styles ([AirBNB](https://github.com/airbnb/javascript) and the self-styled [Javascript Standard Style](https://standardjs.com)), as well as plugins for all sorts of things. In any configuration, ESLint will report dozens (nearly a hundred) errors against the [now-current commit](https://github.com/jdickey/flix/commit/87b8b50). These should probably be fixed, and linting added to a standard continuous-integration setup to ensure that no new errors are introduced.
 
 ## Data Source
 

@@ -4,10 +4,12 @@ import { mount } from 'enzyme';
 
 import PageNotFound from './PageNotFound';
 
+/* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
+
 describe('<PageNotFound />', () => {
   const wrapper = mount(<PageNotFound />);
   const content = wrapper.find('.page-not-found');
-  const expectedText = "We're sorry. This page doesn't exist!"
+  const expectedText = "We're sorry. This page doesn't exist!";
 
   it('renders a single component', () => {
     expect(wrapper.length).toEqual(1);
@@ -24,6 +26,6 @@ describe('<PageNotFound />', () => {
 
     it('has a ".page-not-found" element with the correct text', () => {
       expect(content.text()).toEqual(expectedText);
-    })
+    });
   }); // describe('renders a single component containing' ...)
 }); // describe('<PageNotFound />' ...)

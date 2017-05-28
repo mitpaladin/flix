@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import movies from '../movies.json';
 
 const Movies = () => (
@@ -11,6 +12,8 @@ const Movies = () => (
 
     <hr />
 
+    {/* eslint-disable react/no-array-index-key */}
+    {/* Normally a good idea; we don't (now) support reordering, etc. */}
     <div className="movie-listings">
       {movies.map((movie, i) => (
         <div key={i} className="movie-image">
