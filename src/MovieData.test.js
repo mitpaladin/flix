@@ -14,9 +14,8 @@ describe('MovieData', () => {
 
   describe('has a .find method that returns', () => {
     it('an Array', () => {
-      const actual = obj.find({id: 1});
+      const actual = obj.find();
       expect(Array.prototype.isPrototypeOf(actual)).toBe(true);
-      // expect(JSON.stringify(actual)).toBe(JSON.stringify(movieData[0]));
     });
 
     describe('an Array containing', () => {
