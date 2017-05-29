@@ -2,7 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import movies from '../movies.json';
+import MovieData from '../MovieData';
+
+const movies = new MovieData().get();
+
+const keyForMovie = (movie) => {
+  const releaseDate = new Date(movie.released + ' GMT-7'); // West Coast-ish
+  return ([movie.name, releaseDate.getFullYear()].join('-'));
+};
 
 const Movies = () => (
   <div className="all-movies">
@@ -12,11 +19,9 @@ const Movies = () => (
 
     <hr />
 
-    {/* eslint-disable react/no-array-index-key */}
-    {/* Normally a good idea; we don't (now) support reordering, etc. */}
     <div className="movie-listings">
-      {movies.map((movie, i) => (
-        <div key={i} className="movie-image">
+      {movies.map((movie) => (
+        <div key={keyForMovie(movie)} className="movie-image">
           <Link to={`/movies/${movie.id}`}>
             <img alt={movie.name} src={movie.image} />
           </Link>
