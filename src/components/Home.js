@@ -1,12 +1,13 @@
 
 import React from 'react';
 
-import movies from '../movies.json';
+import MovieData from '../MovieData';
 
 import FeaturedMovie from './FeaturedMovie';
 
 const Home = () => {
-  const topFour = movies.slice(0, 4);
+  // const topFour = movies.slice(0, 4);
+  const topFour = new MovieData().get(4);
 
   return (
     <div>
@@ -16,14 +17,12 @@ const Home = () => {
 
       <hr />
 
-      {/* eslint-disable react/no-array-index-key */}
-      {/* Normally a good idea; we don't (now) support reordering, etc. */}
-
       <div className="featured-movies">
-        {topFour.map((movie, i) => (
+        {/* Remember, "key" is meaningful only to React for managing lists */}
+        {topFour.map((movie) => (
           <FeaturedMovie
             movie={movie}
-            key={i}
+            key={[movie.name, movie.director].join('.')}
           />
         ))}
       </div>
