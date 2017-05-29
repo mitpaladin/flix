@@ -27,7 +27,7 @@ const MovieData = function() {
     return(movies.slice(0, count));
   };
 
-  return({ find: this.find, get: this.get });
+  return(Object.freeze({ find: this.find, get: this.get }));
 };
 
 export default MovieData;

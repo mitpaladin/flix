@@ -75,4 +75,8 @@ describe('MovieData', () => {
       expect(obj.get(274)).toHaveLength(movieData.length);
     });
   }); // describe('has a .get method that returns'
+
+  it('is a frozen object', () => {
+    expect(Object.isFrozen(obj)).toBe(true);
+  });
 }); // describe('MovieData' ...)
