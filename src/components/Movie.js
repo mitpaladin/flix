@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import MovieData from '../MovieData';
@@ -20,19 +20,28 @@ const MovieImageAndMetadata = ({ movie }) => {
   );
 };
 
+const _MovieReviewProps = PropTypes.shape({
+  author: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+});
+
+const _MovieProps = PropTypes.shape({
+  description: PropTypes.string.isRequired,
+  director: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  released: PropTypes.string.isRequired,
+  reviews: PropTypes.arrayOf(_MovieReviewProps),
+});
+
+const MoviePropTypes = {
+  Review: _MovieReviewProps,
+  Movie: _MovieProps,
+};
+
 MovieImageAndMetadata.propTypes = {
-  movie: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    released: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(PropTypes.shape({
-      author: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })),
-  }).isRequired,
+  movie: MoviePropTypes.Movie.isRequired,
 };
 
 
@@ -55,11 +64,7 @@ const MovieReviewTitle = ({ review }) => {
 };
 
 MovieReviewTitle.propTypes = {
-  review: PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
+  review: MoviePropTypes.Review.isRequired,
 };
 
 const MovieReviews = ({ reviews }) => {
@@ -82,23 +87,12 @@ const MovieReviews = ({ reviews }) => {
 };
 
 MovieReviews.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  })).isRequired,
+  reviews: PropTypes.arrayOf(MoviePropTypes.Review).isRequired,
 }
 
-// eslint-disable-next-line react/prefer-stateless-function
-class MovieContainer extends Component {
-  render() {
-    return (
-      <div className="movie">
-        {this.props.children};
-    </div>
-    );
-  }
-}
+const MovieContainer = (props) => {
+  return (<div className="movie">{props.children}</div>);
+};
 
 MovieContainer.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired
