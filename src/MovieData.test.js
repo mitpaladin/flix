@@ -3,8 +3,6 @@ import MovieData from './MovieData';
 
 const EXPECTED_MOVIEDATA_LENGTH = 9;
 
-/* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
-
 describe('MovieData', () => {
   it('can be initialised without parameters', () => {
     new MovieData();

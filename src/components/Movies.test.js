@@ -5,8 +5,6 @@ import { mount } from 'enzyme';
 
 import Movies from './Movies';
 
-/* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
-
 describe('<Movies />', () => {
   const initialEntries = ['/movies'];
   const wrapper = mount(
