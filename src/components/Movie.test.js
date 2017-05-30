@@ -20,6 +20,21 @@ describe('<Movie ... />', () => {
      */
     const wrapper = mount(<Movie match={{ params: { movieId: '1' } }} />);
 
+    /* Criminally basic but at least we check properties' existence */
+    const movieExemplar = {
+      description: expect.stringMatching(/^\S.+\S$/),
+      director: expect.stringMatching(/^\S.+\S$/),
+      image: expect.stringMatching(/^\S.+\S$/),
+      name: expect.stringMatching(/^\S.+\S$/),
+      released: expect.stringMatching(/^\S.+\S$/),
+    };
+
+    const reviewExemplar = {
+      author: expect.stringMatching(/^\S.+\S$/),
+      body: expect.stringMatching(/^\S.+\S$/),
+      title: expect.stringMatching(/^\S.+\S$/),
+    };
+
     it('generates a containing "movie" div', () => {
       const matches = wrapper.find('div.movie');
       expect(matches.exists()).toBeTruthy();
@@ -32,18 +47,14 @@ describe('<Movie ... />', () => {
         expect(movieContainer.children()).toHaveLength(3);
       });
 
-      it('its first child as a "movie-title" div', () => {
+      it('its first child as a MovieTitle component', () => {
         const el = movieContainer.childAt(0);
-        expect(el.name()).toBe('div');
-        expect(el.prop('className')).toBe('movie-title');
+        expect(el.name()).toBe('MovieTitle');
+        expect(el.prop('name')).toEqual(expect.any(String));
       });
 
       describe('its first child containing', () => {
         const titleContainer = movieContainer.childAt(0);
-
-        it('two children', () => {
-          expect(titleContainer.children()).toHaveLength(2);
-        });
 
         describe('a first child that', () => {
           const header = titleContainer.childAt(0);
@@ -56,17 +67,12 @@ describe('<Movie ... />', () => {
             expect(header.text()).not.toHaveLength(0);
           });
         }); // describe('a first child that' ...)
-
-        it('a second child that is an HR element', () => {
-          const el = titleContainer.childAt(1);
-          expect(el.name()).toBe('hr');
-        });
       }); // describe('its first child containing' ...)
 
-      it('its second child as a "movie-container" div', () => {
+      it('its second child as a "MovieImageAndMetadata" component', () => {
         const el = movieContainer.childAt(1);
-        expect(el.name()).toBe('div');
-        expect(el.prop('className')).toBe('movie-container');
+        expect(el.name()).toBe('MovieImageAndMetadata');
+        expect(el.prop('movie')).toMatchObject(movieExemplar);
       });
 
       describe('its second child containing', () => {
@@ -138,10 +144,12 @@ describe('<Movie ... />', () => {
         }); // describe('a second child that'
       }); // describe('its second child containing'
 
-      it('its third child as a "movie-reviews" div', () => {
+      it('its third child as a "MovieReviews" component', () => {
         const el = movieContainer.childAt(2);
-        expect(el.name()).toBe('div');
-        expect(el.prop('className')).toBe('movie-reviews');
+        const expectedReview = expect.arrayContaining([reviewExemplar]);
+
+        expect(el.name()).toBe('MovieReviews');
+        expect(el.prop('reviews')).toEqual(expectedReview);
       });
 
       describe('its third child containing', () => {
@@ -191,9 +199,9 @@ describe('<Movie ... />', () => {
             describe('contains a child element that', () => {
               const authorEl = headerEl.childAt(0);
 
-              it('is a "review-author" span', () => {
-                expect(authorEl.name()).toBe('span');
-                expect(authorEl.prop('className')).toBe('review-author');
+              it('is a "MovieReviewTitleAttribution" component', () => {
+                expect(authorEl.name()).toBe('MovieReviewTitleAttribution');
+                expect(authorEl.prop('author')).toEqual(expect.any(String));
               });
 
               it('contains the word "by", a space, and non-empty text', () => {
