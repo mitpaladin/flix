@@ -7,10 +7,11 @@
 - [Beyond the Tutorial](#beyond-the-tutorial)
   * [Test Coverage](#test-coverage)
   * [Linting](#linting)
-- [Possible Future Enhancements](#possible-future-enhancements)
   * [Data Source](#data-source)
+  * [Docker (for the Data Source)](#docker-for-the-data-source)
+- [Possible Future Enhancements](#possible-future-enhancements)
   * [Design Language, or CSS Framework](#design-language-or-css-framework)
-  * [Docker](#docker)
+  * [Docker (for the app server and tests)](#docker-for-the-app-server-and-tests)
 - [Contributions](#contributions)
 - [License](#license)
 
@@ -72,21 +73,35 @@ Henceforth, _pull requests **will not** be merged without test coverage of the n
 
 Another standard tool is a *linter,* which checks for correctness and style. [ESLint](http://eslint.org) is he most widely used at present, with configurations for the two most widely-used styles ([AirBNB](https://github.com/airbnb/javascript) and the self-styled [Javascript Standard Style](https://standardjs.com)), as well as plugins for all sorts of things. In any configuration, ESLint with the plugins we've identified as immediately useful (see Issue [#4](https://github.com/jdickey/flix/issues/4)) reported several *hundred* errors against the [last commit](https://github.com/jdickey/flix/commit/87b8b50) merged to `master` before linting. Fixing these and adding linting to our standard continuous-integration setup helps to ensure that no new errors, indicating code smells and likely bugs, are introduced.
 
-# Possible Future Enhancements
-
-Each of these can be argued as beyond the scope of the original tutorial, but would make interesting and/or useful enhancements to the state of the application in its [current state](https://github.com/jdickey/flix/commit/87b8b50). None of these was included, or even hinted at, in the [original tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4), which I tend to view as failings in that tutorial rather than "bling" to "weigh down" the development cycle. It should be noted that the tutorial made no use of Git, or any other version control system, despite the facts that **a)** no responsible developer starts a modern project without using source control, and **b)** as a tutorial, *especially* as a tutorial of bleeding-edge, not-yet-finalised technical tools, it is to be *expected* that the student will discover errors made at times and wish to go back to the last known-good build. Without source control, that can be highly problematic.
-
 ## Data Source
 
-[Presently](https://github.com/jdickey/flix/commit/87b8b50), the movie data is [read](https://github.com/jdickey/flix/blob/87b8b50/src/components/Home.js#L3) from a [JSON file](https://github.com/jdickey/flix/blob/87b8b50/src/movies.json). This is obviously, at best, an expedient hack. At minimum, reading from a "remote service" using something like [`typicode/json-server`](https://github.com/typicode/json-server) would let us use React lifecycle hooks to load data in a manner more closely approximating real-world usage. A somewhat more enterprising PR might implement an abstraction for the data source that is invoked by the component hook, so that the component itself no longer knows or cares where the data is actually coming from, only that it can get it.
+As of the closure of Issue [#6](https://github.com/jdickey/flix/issues/6), all access to movie data from component code uses the new `MovieData` object, with its `find` and `get` functions. This removes the knowledge of where that data is coming from from several components, each of which were previously accessing it directly from a JSON file.
+
+`MovieData` itself uses a `MovieLoader` object to actually load the data; this is so that the knowledge of whether data is loaded from a JSON file or a server via an HTTP request is separate from the implementation of those `find` and `get` functions. Why do we still read a JSON file, even sometimes? To deal with a limitation of our current (and otherwise generally excellent) [continuous-integration service](https://codeship.com/), where we only have access to a single "pipeline" (thread of execution) to run our CI. This in turn means that we can't read data from an external service when running tests in CI, because we can't start the service's server without blocking our CI thread (and preventing it from ever completing). We've extracted into `MovieLoader` so that that file can be excluded from code coverage statistics, since it can never be 100% covered (we're either running in CI mode or we aren't).
+
+`MovieLoader` as well uses an easy-to-use but dangerous-in-production "fetch" library, [`ForbesLindesay/sync-request`](https://github.com/ForbesLindesay/sync-request), whose README (in big H1-level text) explains why you shouldn't use it for production applications:
+
+> Synchronous web requests are the number one cause of browser crashes.
+
+For our present needs, however, it Works Just Fine.
+
+## Docker (for the Data Source)
+
+As mentioned previously, we now use the (excellent) [`typicode/json-server`](https://github.com/typicode/json-server) package, which does just what it says on the tin with a ton of [useful features](https://github.com/typicode/json-server/blob/master/README.md) and [third-party tools](https://github.com/typicode/json-server/blob/master/README.md#third-party-tools). One of the latter is a [Dockerfile for `json-server`](https://github.com/clue/docker-json-server) that Just Works.
+
+To run our data server in a Docker container, exposing its JSON API via port 3456, simply run `yarn run movies-docker`. To run the server using a different port, run something like `MOVIES_PORT=8765 yarn run movies-docker-port`. Then also set a `MOVIES_PORT=8765` environment variable when running `yarn test`, `yarn coverage`, or `yarn start` so that the client can find your relocated server.
+
+# Possible Future Enhancements
+
+These also can be argued as beyond the scope of the original tutorial, but would make interesting and/or useful enhancements to the state of the application [when initial requirements had been completed](https://github.com/jdickey/flix/commit/87b8b50). None of these was included, or even hinted at, in the [original tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4), which I tend to view as failings in that tutorial rather than "bling" to "weigh down" the development cycle. It should be noted that the tutorial made no use of Git, or any other version control system, despite the facts that **a)** no responsible developer starts a modern project without using source control, and **b)** as a tutorial, *especially* as a tutorial of bleeding-edge, not-yet-finalised technical tools, it is to be *expected* that the student will discover errors made at times and wish to go back to the last known-good build. Without source control, that can be highly problematic.
 
 ## Design Language, or CSS Framework
 
 Having the markup, and the components encapsulating the markup, use one of the popular "design language" CSS frameworks, such as [Semantic UI](https://semantic-ui.com), [Twitter Bootstrap](http://getbootstrap.com), or [Google Material Design](https://material.io/guidelines/material-design/introduction.html). All three have [React](http://react.semantic-ui.com/introduction) [component](https://react-bootstrap.github.io) [sets](http://www.material-ui.com/) available, with varying levels of maturity, that make integrating styling into React apps more natural and less error-prone than dealing with raw HTML styling directly. After extensive experience with Bootstrap, [my](https://jdickey.github.io) current preference is for Semantic UI and their relatively mature, comprehensive React component set, but PRs using either of the others, or ones I don't yet know about, would be entertained.
 
-## Docker
+## Docker (for the app server and tests)
 
-It would be interesting, and relatively straightforward, to spin up a `Dockerfile` to run the app (and/or the app tests) in a Docker image. Among other things, this would serve as a "self-hosting CI setup" by proving that no unknown/undocumented dependencies on the development system are required for the app and its tests to run correctly. Additionally, in line wiht the [*Data Source*](#data-source) item above, running the data source in a separate Docker container orchestrated by `docker-compose` or equivalent would give more confidence in the separation of the details of the data source from the app itself.
+It would be extremely straightforward to spin up a `Dockerfile` to run the app (and/or the app tests) in a Docker image, particularly since we've already spun up [Docker for the data source](#docker-for-the-data-source). Among other things, this would serve as a "self-hosting CI setup" by proving, without relying on an external commercial service, that no unknown/undocumented dependencies on the development system are required for the app and its tests to run correctly. Orchestration of what would then be two containers coule be achieved using `docker-compose` or equivalent.
 
 # Contributions
 

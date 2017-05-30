@@ -4,8 +4,6 @@ import { mount } from 'enzyme';
 
 import PageNotFound from './PageNotFound';
 
-/* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
-
 describe('<PageNotFound />', () => {
   const wrapper = mount(<PageNotFound />);
   const content = wrapper.find('.page-not-found');

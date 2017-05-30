@@ -2,12 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import movies from '../movies.json';
+import MovieData from '../MovieData';
 
 const Movie = ({ match: { params: { movieId } } }) => {
-  const movie = movies.find(
-    movie => movie.id === parseInt(movieId, 10),
-  );
+  const movie = new MovieData().find({ id: parseInt(movieId, 10) })[0];
 
   return (
     <div className="movie">
