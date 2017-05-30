@@ -1,10 +1,11 @@
 
 import React from 'react';
+import { Container } from 'semantic-ui-react';
 
 const PageNotFound = () => (
-  <div className="page-not-found">
+  <Container className="page-not-found">
     We&apos;re sorry. This page doesn&apos;t exist!
-  </div>
+  </Container>
 );
 
 export default PageNotFound;
