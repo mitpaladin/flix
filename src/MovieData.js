@@ -23,7 +23,7 @@ const MovieData = function() {
   }
 
   this.get = (count) => {
-    if (count == undefined) { count = movies.length; }
+    if (count === undefined) { count = movies.length; }
     return(movies.slice(0, count));
   };
 
