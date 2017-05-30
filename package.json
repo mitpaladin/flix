@@ -17,11 +17,13 @@
     "npm": ">= 4.2.0"
   },
   "dependencies": {
+    "json-server": "^0.10.1",
     "prop-types": "^15.5.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "4.x",
     "react-router-dom": "^4.1.1",
+    "sync-request": "^4.0.3",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
@@ -43,10 +45,14 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "coverage": "npm test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/service-worker-registration.js",
+    "coverage": "npm test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/service-worker-registration.js --collectCoverageFrom=!src/MovieLoader.js",
     "eject": "react-scripts eject",
     "lint": "eslint public src",
     "lint-fix": "eslint --fix public src",
+    "movies": "json-server -p 3456 --watch --read-only src/movies.json",
+    "movies-docker": "docker run --rm -dit -p 3456:80 -v $PWD/src/movies.json:/data/db.json clue/json-server",
+    "movies-docker-port": "docker run --rm -dit -p $MOVIES_PORT:80 -v $PWD/src/movies.json:/data/db.json clue/json-server",
+    "movies-port": "json-server -p $MOVIES_PORT --watch --read-only src/movies.json",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
   }

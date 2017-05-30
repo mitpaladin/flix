@@ -1,7 +1,7 @@
 
 import MovieData from './MovieData';
 
-import movieData from './movies.json';
+const EXPECTED_MOVIEDATA_LENGTH = 9;
 
 /* eslint-disable no-undef */ /* for describe, expect, it. WhyTH? */
 
@@ -58,7 +58,7 @@ describe('MovieData', () => {
 
   describe('has a .get method that returns', () => {
     it('all movies when called without a parameter value', () => {
-      expect(obj.get()).toHaveLength(movieData.length);
+      expect(obj.get()).toHaveLength(EXPECTED_MOVIEDATA_LENGTH);
     });
 
     it('no movies when called with a parameter value of zero', () => {
@@ -71,7 +71,7 @@ describe('MovieData', () => {
     });
 
     it('all movies when called with a param exceeding the actual count', () => {
-      expect(obj.get(274)).toHaveLength(movieData.length);
+      expect(obj.get(274)).toHaveLength(EXPECTED_MOVIEDATA_LENGTH);
     });
   }); // describe('has a .get method that returns'
 

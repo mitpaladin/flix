@@ -1,8 +1,8 @@
 
-import movieData from './movies.json';
+import MovieLoader from './MovieLoader';
 
 const MovieData = function() {
-  const movies = movieData;
+  const movies = new MovieLoader();
 
   const isValidKey = (key) => {
     const validKeys = [ 'description', 'director', 'id', 'name', 'released' ];
