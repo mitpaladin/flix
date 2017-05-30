@@ -23,6 +23,7 @@
     "react-dom": "^15.5.4",
     "react-router": "4.x",
     "react-router-dom": "^4.1.1",
+    "semantic-ui-react": "^0.68.4",
     "sync-request": "^4.0.3",
     "valid-url": "^1.0.9"
   },
