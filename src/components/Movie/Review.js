@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 
 import MoviePropTypes from './PropTypes';
 
+import MovieReviewBody from './ReviewBody';
 import MovieReviewTitle from './ReviewTitle';
 
 const MovieReview = ({ review, className }) => {
   return (
     <div className={className}>
       <MovieReviewTitle review={review} />
-      <p>{review.body}</p>
+      <MovieReviewBody body={review.body} />
     </div>
   );
 };

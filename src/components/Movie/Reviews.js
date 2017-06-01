@@ -2,10 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Container from './Container';
+import { Container, Divider, Header } from 'semantic-ui-react';
+
 import MovieReview from './Review';
 import MoviePropTypes from './PropTypes';
-
 
 const MovieReviews = ({ reviews }) => {
   const keyFor = (review) => {
@@ -20,8 +20,8 @@ const MovieReviews = ({ reviews }) => {
 
   return (
     <Container className="movie-reviews">
-      <h2>Reviews</h2>
-      <hr />
+      <Header as="h2">Reviews</Header>
+      <Divider />
       {items}
     </Container>
   );
