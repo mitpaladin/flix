@@ -12,9 +12,10 @@
 - [Possible Future Enhancements](#possible-future-enhancements)
   * [Design Language, or CSS Framework](#design-language-or-css-framework)
   * [Docker (for the app server and tests)](#docker-for-the-app-server-and-tests)
+  * [Competent Modern Styling](#competent-modern-styling)
 - [Contributions](#contributions)
 - [License](#license)
-
+- 
 # Introduction
 
 This repo documents [my](https://jdickey.github.io) working through [a tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4) on [React Router v4](https://reacttraining.com/react-router/) which was produced in January, 2017 &mdash; three months before the actual [4.0.0 release](https://github.com/ReactTraining/react-router/releases/tag/v4.0.0) shipped. "How is this possible", you ask? Through the blessing of long and arduous alpha- and beta-release development cycles. "Why doesn't the tutorial match what was actually shipped &mdash; to the point you were [ready to give up in disgust](https://github.com/jdickey/flix/commit/1d79b7d)", you ask? Through the curse of long and arduous alpha- and beta-release development cycles.
@@ -102,6 +103,12 @@ Having the markup, and the components encapsulating the markup, use one of the p
 ## Docker (for the app server and tests)
 
 It would be extremely straightforward to spin up a `Dockerfile` to run the app (and/or the app tests) in a Docker image, particularly since we've already spun up [Docker for the data source](#docker-for-the-data-source). Among other things, this would serve as a "self-hosting CI setup" by proving, without relying on an external commercial service, that no unknown/undocumented dependencies on the development system are required for the app and its tests to run correctly. Orchestration of what would then be two containers coule be achieved using `docker-compose` or equivalent.
+
+## Competent Modern Styling
+
+Rather than the current two kitchen-sink CSS files where styling for any and all components get thrown into the soup, we'd much prefer to associate (non-inline by default, CSS-based) styling more directly with individual components. This could use something like [`styled-components`](https://github.com/styled-components/styled-components).
+
+The alternative, or a useful intermediate step, would be to break up the existing CSS files into per-component files plus a common reset/master shared style file, all using SCSS rather than old-school CSS. Let's *at least* have variables and nested styles that make reuse practical and organisation obvious.
 
 # Contributions
 
