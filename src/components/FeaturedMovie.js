@@ -2,21 +2,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Container, Image, List } from 'semantic-ui-react';
 
 const FeaturedMovie = ({ movie }) => (
-  <div className="featured-movie">
-    <div className="featured-movie__image">
+  <Container className="featured-movie">
+    <Container className="featured-movie__image">
       <Link to={`/movies/${movie.id}`}>
-        <img alt={movie.name} src={movie.image} />
+        <Image alt={movie.name} src={movie.image} />
       </Link>
-    </div>
+    </Container>
 
-    <div className="featured-movie__info">
-      <p><b>{movie.name}</b></p>
-      <p>{movie.director}</p>
-      <p>{movie.released}</p>
-    </div>
-  </div>
+    <List className="featured-movie__info">
+      <List.Item><List.Header>{movie.name}</List.Header></List.Item>
+      <List.Item>{movie.director}</List.Item>
+      <List.Item>{movie.released}</List.Item>
+    </List>
+  </Container>
 );
 
 FeaturedMovie.propTypes = {

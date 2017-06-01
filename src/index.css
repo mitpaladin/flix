@@ -49,19 +49,22 @@ body {
 }
 
 .featured-movie__image img {
-  width: 100%;
   max-height: 343px;
   min-height: 343px;
 }
 
-.featured-movie p {
+.featured-movie .item {
   margin: 0;
   cursor: default;
   padding-bottom: 3px;
 }
 
-.featured-movie p:first-child {
-  padding-top: 15px;
+.featured-movie .item:first-child {
+  padding-top: 1rem;
+}
+
+.featured-movie__info .header {
+  font-weight: bold;
 }
 
 hr {
