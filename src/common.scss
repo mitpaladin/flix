@@ -8,3 +8,25 @@ body {
   font-family: $arialStack;
   color: $bodyColour;
 }
+
+.App-header {
+  background-color: $appHeadBackColour;
+  padding-bottom: 1rem;
+
+  a {
+    color: $appHeadTextColour;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding-right: 30px;
+
+    &:hover { color: $hilightColour; }
+
+    &:last-child { padding-right: 0; }
+  }
+
+  h2 {
+    color: $appHeadTextColour;
+    font-size: 3rem;
+    padding-top: 1rem;
+  }
+}
