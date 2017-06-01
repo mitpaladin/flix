@@ -2,8 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Header } from 'semantic-ui-react';
+
 const MovieTitle = ({ name, className }) => {
-  return (<div className={className}><h2>{name}</h2></div>);
+  return (<Header as="h2" className={className}>{name}</Header>);
 };
 
 MovieTitle.propTypes = {

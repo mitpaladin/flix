@@ -118,7 +118,7 @@ hr {
   padding: 20px;
 }
 
-.movie-title h2, .movie-reviews h2 {
+h2.movie-title, .movie-reviews h2 {
   font-size: 32px;
   margin: 0;
 }

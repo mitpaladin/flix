@@ -21,7 +21,7 @@ const MovieReviews = ({ reviews }) => {
   return (
     <Container className="movie-reviews">
       <Header as="h2">Reviews</Header>
-      <Divider />
+      <Divider section><hr /></Divider>
       {items}
     </Container>
   );
