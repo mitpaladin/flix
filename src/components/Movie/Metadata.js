@@ -2,15 +2,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Container } from 'semantic-ui-react';
+
 import MoviePropTypes from './PropTypes';
 
 const MovieMetadata = ({ movie, className }) => {
   return (
-    <div className={className}>
-      <p><b>Director:</b> {movie.director}</p>
-      <p><b>Release Date:</b> {movie.released}</p>
-      <p><b>Description:</b> {movie.description} </p>
-    </div>
+    <Container className={className}>
+      <dl>
+        <dt>Director</dt>
+        <dd>{movie.director}</dd>
+        <dt>Release Date</dt>
+        <dd>{movie.released}</dd>
+        <dt>Description</dt>
+        <dd>{movie.description}</dd>
+      </dl>
+    </Container>
   );
 };
 
