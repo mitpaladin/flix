@@ -2,12 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Image } from 'semantic-ui-react';
+
 const MovieImage = ({ name, image, className }) => {
-  return (
-    <div className={className}>
-      <img alt={name} src={image} />
-    </div>
-  );
+  return (<Image src={image} alt={name} className={className} />);
 };
 
 MovieImage.propTypes = {
