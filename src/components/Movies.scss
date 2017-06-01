@@ -1,0 +1,29 @@
+
+@import 'common.scss';
+
+.all-movies {
+  > .header {
+    font-size: 2rem;
+    margin: 2.5rem 0;
+    font-weight: bold;
+    line-height: 1.5rem;
+  }
+
+  .movie-listings {
+    display: flex;
+    flex-wrap: wrap;
+
+    .movie-image {
+      padding-right: 6px;
+      order: 1;
+      display: block;
+
+      .image {
+        min-width: 320px;;
+        max-width: 320px;
+        min-height: 480px;
+        max-height: 480px;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MoviePropTypes from './PropTypes';
+import { MoviePropTypes } from './PropTypes';
 
 import MovieReviewBody from './ReviewBody';
 import MovieReviewTitle from './ReviewTitle';

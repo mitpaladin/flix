@@ -1,16 +1,12 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  color: #212121;
-}
+
+@import 'common.scss';
 
 .App-header {
-  background: #F44336;
+  background-color: $appHeadBackColour;
 }
 
 .App-header a {
-  color: #fff;
+  color: $appHeadTextColour;
   font-size: 20px;
   text-decoration: none;
   padding-right: 30px;
@@ -21,7 +17,7 @@ body {
 }
 
 .App-header a:hover {
-  color: #e0e0e0;
+  color: $hilightColour;
 }
 
 .App-header a:last-child {
@@ -69,7 +65,7 @@ body {
 
 hr {
   margin-bottom: 15px;
-  background-color: #e0e0e0;
+  background-color: $hilightColour;
   height: 1px;
   border: 0;
 }
@@ -141,15 +137,6 @@ h2.movie-title, .movie-reviews h2 {
 
 .review-author {
   font-size: 12px;
-}
-
-.movie-listings {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.movie-listings .movie-image {
-  padding-right: 6px;
 }
 
 .page-not-found {

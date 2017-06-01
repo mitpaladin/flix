@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Container, Divider, Header } from 'semantic-ui-react';
 
 import MovieReview from './Review';
-import MoviePropTypes from './PropTypes';
+import { MoviePropTypes } from './PropTypes';
 
 const MovieReviews = ({ reviews }) => {
   const keyFor = (review) => {

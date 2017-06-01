@@ -16,9 +16,15 @@ const _MovieProps = PropTypes.shape({
   reviews: PropTypes.arrayOf(_MovieReviewProps),
 });
 
+const MovieDisplayProps = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+});
+
 const MoviePropTypes = {
   Review: _MovieReviewProps,
   Movie: _MovieProps,
 };
 
-export default MoviePropTypes;
+export { MovieDisplayProps, MoviePropTypes };
