@@ -1,11 +1,23 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Container } from 'semantic-ui-react';
 
-const PageNotFound = () => (
-  <Container className="page-not-found">
+import './PageNotFound.css';
+
+const PageNotFound = (props) => (
+  <Container className={props.className}>
     We&apos;re sorry. This page doesn&apos;t exist!
   </Container>
 );
+
+PageNotFound.propTypes = {
+  className: PropTypes.string,
+}
+
+PageNotFound.defaultProps = {
+  className: 'page-not-found',
+}
 
 export default PageNotFound;
