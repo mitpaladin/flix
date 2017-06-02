@@ -16,9 +16,7 @@ const Home = () => {
 
   return (
     <Container>
-      <Header as="h2" className="featured-movies__header">
-        Featured Movies
-      </Header>
+      <Header className="featured-movies__header">Featured Movies</Header>
 
       <Divider vertical><hr /></Divider>
 

@@ -18,13 +18,15 @@
 }
 
 .featured-movies__header {
+  font-weight: bold;
+  font-size: 2rem;
   margin-bottom: 15px;
   margin-top: 60px;
 }
 
-.featured-movie__image img {
-  max-height: 343px;
-  min-height: 343px;
+.featured-movie__image {
+  max-height: $imgPreviewHeight;
+  min-height: $imgPreviewHeight;
 }
 
 .featured-movie .item {
@@ -86,8 +88,8 @@ hr {
 }
 
 .movie-information, .movie-reviews {
-  background: #f7f7f7;
-  box-shadow: 0px 5px 10px 0px #e8e6e6;
+  background-color: lighten(lightgrey, 15%);
+  box-shadow: 0px 5px 10px 0px lighten(lightgrey, 10%);
   padding: 20px;
 }
 

@@ -19,10 +19,10 @@
       display: block;
 
       .image {
-        min-width: 320px;;
-        max-width: 320px;
-        min-height: 480px;
-        max-height: 480px;
+        min-width: $imgDisplayWidth;
+        max-width: $imgDisplayWidth;
+        min-height: $imgDisplayHeight;
+        max-height: $imgDisplayHeight;
       }
     }
   }

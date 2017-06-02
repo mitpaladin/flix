@@ -6,11 +6,9 @@ import { Container, Image, List } from 'semantic-ui-react';
 
 const FeaturedMovie = ({ movie }) => (
   <Container className="featured-movie">
-    <Container className="featured-movie__image">
-      <Link to={`/movies/${movie.id}`}>
-        <Image alt={movie.name} src={movie.image} />
-      </Link>
-    </Container>
+    <Link to={`/movies/${movie.id}`}>
+      <Image className="featured-movie__image" alt={movie.name} src={movie.image} />
+    </Link>
 
     <List className="featured-movie__info">
       <List.Item><List.Header>{movie.name}</List.Header></List.Item>

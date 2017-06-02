@@ -1,12 +1,20 @@
 
 //
 // First whack at basic theming; font families and font/background colours are
-// defined here.
+// defined here, courtesy of https://css-tricks.com/snippets/css/font-stacks/
 
 $verdanaStack: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
 $arialStack: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-$appHeadBackColour: #F44336;
+// Colours to be made consistent across the app
+
+$appHeadBackColour: darken(tomato, 12.5%);
 $appHeadTextColour: white;
-$bodyColour: #212121;
-$hilightColour: #e0e0e0;
+$bodyColour: lighten(black, 12.5%);
+$hilightColour: lighten(silver, 12.5%);
+
+// Sizes to be made consistent across the app
+
+$imgPreviewHeight: 343px;
+$imgDisplayHeight: 480px;
+$imgDisplayWidth: 320px;
