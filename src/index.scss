@@ -55,39 +55,7 @@ hr {
   padding-right: 20px;
 }
 
-.movie-information {
-  order: 1;
-  text-align: left;
-  width: 100%;
-}
-
-.movie-information dl {
-  display: inline;
-}
-
-.movie-information dl::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.movie-information dt {
-  float: left;
-  clear: left;
-  min-width: 8rem;
-  font-weight: bold;
-}
-
-.movie-information dt::after {
-  content: ":";
-}
-
-.movie-information dd {
-  margin-left: 8rem;
-  margin-bottom: 0.2rem;
-}
-
-.movie-information, .movie-reviews {
+.movie-reviews {
   background-color: lighten(lightgrey, 15%);
   box-shadow: 0px 5px 10px 0px lighten(lightgrey, 10%);
   padding: 20px;
