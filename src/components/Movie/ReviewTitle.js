@@ -2,28 +2,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Container } from 'semantic-ui-react';
+
 import { MoviePropTypes } from './PropTypes';
 
-const MovieReviewTitleAttribution = ({ author }) => {
+import './ReviewTitle.css';
+
+const MovieReviewTitleAttribution = (props) => {
   return (
-    <span className="review-author">by {author}</span>
+    <span className={props.className}>by {props.author}</span>
   );
 };
 
 MovieReviewTitleAttribution.propTypes = {
   author: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
-const MovieReviewTitle = ({ review }) => {
+const MovieReviewTitle = (props) => {
   return (
-    <h3>
-      {review.title} <MovieReviewTitleAttribution author={review.author} />
-    </h3>
+    <Container className={props.className}>
+      {props.review.title}&nbsp;
+      <MovieReviewTitleAttribution
+        author={props.review.author}
+        className={props.authorClassName}
+      />
+    </Container>
   );
 };
 
 MovieReviewTitle.propTypes = {
   review: MoviePropTypes.Review.isRequired,
+  className: PropTypes.string,
+  authorClassName: PropTypes.string,
 };
+
+MovieReviewTitle.defaultProps = {
+  className: 'review-title',
+  authorClassName: 'review-author',
+}
 
 export default MovieReviewTitle;
