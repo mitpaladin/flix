@@ -7,18 +7,6 @@
   width: 980px;
 }
 
-.featured-movies {
-  display: flex;
-  justify-content: space-between;
-}
-
-.featured-movies__header {
-  font-weight: bold;
-  font-size: 2rem;
-  margin-bottom: 15px;
-  margin-top: 60px;
-}
-
 hr {
   margin-bottom: 15px;
   background-color: $hilightColour;
