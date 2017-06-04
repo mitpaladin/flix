@@ -7,6 +7,8 @@ import FeaturedMovieProps from './FeaturedMovie/Props'
 import FeaturedMovieImage from './FeaturedMovie/Image'
 import FeaturedMovieInfo from './FeaturedMovie/Info'
 
+import './FeaturedMovie.css';
+
 const FeaturedMovie = ({ className, movie }) => (
   <Container className={className}>
     <FeaturedMovieImage movie={movie} />
