@@ -1,30 +1,23 @@
 
 import React from 'react';
-
-import { Container, Divider, Header } from 'semantic-ui-react';
+import { Container, Divider } from 'semantic-ui-react';
 
 import MovieData from '../MovieData';
 
-import FeaturedMovie from './FeaturedMovie';
+import FeaturedMoviesContainer from './FeaturedMoviesContainer';
+import FeaturedMoviesHeader from './FeaturedMoviesHeader';
 
 const Home = () => {
-  const keyFor = (movie) => {
-    return ([movie.name, movie.director].join('.'));
-  };
 
-  const featured = new MovieData().get(4);
+  const count = 4;
+
+  const featured = new MovieData().get(count);
 
   return (
     <Container>
-      <Header className="featured-movies__header">Featured Movies</Header>
-
+      <FeaturedMoviesHeader />
       <Divider vertical><hr /></Divider>
-
-      <Container className="featured-movies">
-        {featured.map((movie) => (
-          <FeaturedMovie movie={movie} key={keyFor(movie)} />
-        ))}
-      </Container>
+      <FeaturedMoviesContainer featured={featured} />
     </Container>
   );
 };
