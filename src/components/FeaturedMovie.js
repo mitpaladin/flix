@@ -1,30 +1,26 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Container, Image, List } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
-const FeaturedMovie = ({ movie }) => (
-  <Container className="featured-movie">
-    <Link to={`/movies/${movie.id}`}>
-      <Image className="featured-movie__image" alt={movie.name} src={movie.image} />
-    </Link>
+import FeaturedMovieProps from './FeaturedMovie/Props'
+import FeaturedMovieImage from './FeaturedMovie/Image'
+import FeaturedMovieInfo from './FeaturedMovie/Info'
 
-    <List className="featured-movie__info">
-      <List.Item><List.Header>{movie.name}</List.Header></List.Item>
-      <List.Item>{movie.director}</List.Item>
-      <List.Item>{movie.released}</List.Item>
-    </List>
+const FeaturedMovie = ({ className, movie }) => (
+  <Container className={className}>
+    <FeaturedMovieImage movie={movie} />
+    <FeaturedMovieInfo movie={movie} />
   </Container>
 );
 
 FeaturedMovie.propTypes = {
-  movie: PropTypes.shape({
-    director: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    released: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
+  movie: FeaturedMovieProps.isRequired,
+  className: PropTypes.string,
 };
+
+FeaturedMovie.defaultProps = {
+  className: 'featured-movie',
+}
 
 export default FeaturedMovie;
