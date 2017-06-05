@@ -16,8 +16,8 @@ const MovieTitle = ({ name, className }) => {
 };
 
 MovieTitle.propTypes = {
-  name: PropTypes.string.isRequired,
   className: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };
 
 MovieTitle.defaultProps = {

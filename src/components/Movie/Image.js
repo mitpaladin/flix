@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import { Image } from 'semantic-ui-react';
 
-const MovieImage = ({ name, image, className }) => {
+const MovieImage = ({ className, image, name }) => {
   return (<Image src={image} alt={name} className={className} />);
 };
 
 MovieImage.propTypes = {
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
   className: PropTypes.string,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 MovieImage.defaultProps = {

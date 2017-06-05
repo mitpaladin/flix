@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import { Container } from 'semantic-ui-react';
 
-const MovieContainer = (props) => {
-  return (<Container className={props.className}>{props.children}</Container>);
+const MovieContainer = ({ children, className, }) => {
+  return (<Container className={className}>{children}</Container>);
 };
 
 MovieContainer.propTypes = {

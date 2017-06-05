@@ -50,6 +50,7 @@
   "scripts": {
     "build": "yarn run build-css && react-scripts build",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "clean-css": "find src -name *.css -delete",
     "watch-css": "yarn run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "coverage": "yarn test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/service-worker-registration.js --collectCoverageFrom=!src/MovieLoader.js",
     "eject": "react-scripts eject",

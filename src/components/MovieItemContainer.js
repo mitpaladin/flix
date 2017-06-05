@@ -8,7 +8,7 @@ import { MovieDisplayProps } from './Movie/PropTypes'
 
 import MovieItem from './MovieItem';
 
-const MovieItemContainer = (props) => {
+const MovieItemContainer = ({ className, movies }) => {
   const keyForMovie = (movie) => {
     const releasedInTimeZone = ' GMT-7'; // West Coast-ish
     const releaseDate = new Date(movie.released + releasedInTimeZone);
@@ -17,8 +17,8 @@ const MovieItemContainer = (props) => {
   };
 
   return (
-    <Container className={props.className}>
-      {props.movies.map((movie) => (
+    <Container className={className}>
+      {movies.map((movie) => (
         <MovieItem key={keyForMovie(movie)} movie={movie} />
       ))}
     </Container>
@@ -26,8 +26,8 @@ const MovieItemContainer = (props) => {
 }
 
 MovieItemContainer.propTypes = {
-  movies: PropTypes.arrayOf(MovieDisplayProps).isRequired,
   className: PropTypes.string,
+  movies: PropTypes.arrayOf(MovieDisplayProps).isRequired,
 }
 
 MovieItemContainer.defaultProps = {

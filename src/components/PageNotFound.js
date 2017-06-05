@@ -6,8 +6,8 @@ import { Container } from 'semantic-ui-react';
 
 import './PageNotFound.css';
 
-const PageNotFound = (props) => (
-  <Container className={props.className}>
+const PageNotFound = ({ className }) => (
+  <Container className={className}>
     We&apos;re sorry. This page doesn&apos;t exist!
   </Container>
 );

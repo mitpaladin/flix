@@ -9,7 +9,7 @@ import { MoviePropTypes } from './PropTypes';
 import MovieReviewBody from './ReviewBody';
 import MovieReviewTitle from './ReviewTitle';
 
-const MovieReview = ({ review, className }) => {
+const MovieReview = ({ className, review }) => {
   return (
     <Container className={className}>
       <MovieReviewTitle review={review} />
@@ -19,8 +19,8 @@ const MovieReview = ({ review, className }) => {
 };
 
 MovieReview.propTypes = {
-  review: MoviePropTypes.Review.isRequired,
   className: PropTypes.string,
+  review: MoviePropTypes.Review.isRequired,
 };
 
 MovieReview.defaultProps = {

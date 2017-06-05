@@ -8,9 +8,9 @@ import { MoviePropTypes } from './PropTypes';
 
 import './ReviewTitle.css';
 
-const MovieReviewTitleAttribution = (props) => {
+const MovieReviewTitleAttribution = ({ author, className }) => {
   return (
-    <span className={props.className}>by {props.author}</span>
+    <span className={className}>by {author}</span>
   );
 };
 
@@ -19,27 +19,27 @@ MovieReviewTitleAttribution.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
-const MovieReviewTitle = (props) => {
+const MovieReviewTitle = ({ authorClassName, className, review }) => {
   return (
-    <Container className={props.className}>
-      {props.review.title}&nbsp;
+    <Container className={className}>
+      {review.title}&nbsp;
       <MovieReviewTitleAttribution
-        author={props.review.author}
-        className={props.authorClassName}
+        author={review.author}
+        className={authorClassName}
       />
     </Container>
   );
 };
 
 MovieReviewTitle.propTypes = {
-  review: MoviePropTypes.Review.isRequired,
-  className: PropTypes.string,
   authorClassName: PropTypes.string,
+  className: PropTypes.string,
+  review: MoviePropTypes.Review.isRequired,
 };
 
 MovieReviewTitle.defaultProps = {
-  className: 'review-title',
   authorClassName: 'review-author',
+  className: 'review-title',
 }
 
 export default MovieReviewTitle;

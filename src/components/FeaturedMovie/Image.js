@@ -15,8 +15,8 @@ const FeaturedMovieImage = ({ className, movie }) => (
 )
 
 FeaturedMovieImage.propTypes = {
-  movie: FeaturedMovieProps.isRequired,
   className: PropTypes.string,
+  movie: FeaturedMovieProps.isRequired,
 };
 
 FeaturedMovieImage.defaultProps = {

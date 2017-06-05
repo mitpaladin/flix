@@ -23,8 +23,8 @@ const MovieDisplayProps = PropTypes.shape({
 });
 
 const MoviePropTypes = {
-  Review: _MovieReviewProps,
   Movie: _MovieProps,
+  Review: _MovieReviewProps,
 };
 
 export { MovieDisplayProps, MoviePropTypes };

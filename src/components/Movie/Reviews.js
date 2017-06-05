@@ -9,19 +9,19 @@ import { MoviePropTypes } from './PropTypes';
 
 import './Reviews.css';
 
-const MovieReviews = (props) => {
+const MovieReviews = ({ className, reviews }) => {
   const keyFor = (review) => {
     return([review.title, review.author].join('-'));
   };
 
-  const items = props.reviews.map((review) => {
+  const items = reviews.map((review) => {
     return(
       <MovieReview key={keyFor(review)} review={review} />
     );
   });
 
   return (
-    <Container className={props.className}>
+    <Container className={className}>
       <Header>Reviews</Header>
       <Divider section><hr /></Divider>
       {items}
