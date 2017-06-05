@@ -105,6 +105,8 @@ Ordinary CSS is brittle, clunky, verbose, and often seemingly needlessly confusi
 
 Adding SCSS to the project was tedious but straightforward, and [well-documented](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc) in the *Create React App* README. The procedure will produce vanilla CSS output files in the same directory as the SCSS source; e.g., a `src/foo/bar/baz.scss` file will compile to `src/foo/bar/baz.css`, and *the latter* is what should be [imported](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet) into JavaScript using Webpack.
 
+This also included the previously-documented "Possible Future Enhancement" of *Competent Modern Styling*. This meant that styling used by a single component, say `DashboardCupholder.js`, was to be extracted into a standalone file (here, `DashboardCupholder.scss`), with styling behaviour shared among multiple components further extracted into SCSS [mixins](http://sass-lang.com/guide#topic-6). Further, effort should be undertaken for font-related sizing as well as padding and margins, to be expressed in [`rem`s](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size?v=example#Rems) rather than `em`s or pixels. (Yes, we are aware that standards define a `px` as not necessarily a one-hardware-pixel by one-hardware-pixel area, but that's another bit of historical folklore to add to the cognitive load of understanding markup.)
+
 # Possible Future Enhancements
 
 These also can be argued as beyond the scope of the original tutorial, but would make interesting and/or useful enhancements to the state of the application [when initial requirements had been completed](https://github.com/jdickey/flix/commit/87b8b50). None of these was included, or even hinted at, in the [original tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4), which I tend to view as failings in that tutorial rather than "bling" to "weigh down" the development cycle. It should be noted that the tutorial made no use of Git, or any other version control system, despite the facts that **a)** no responsible developer starts a modern project without using source control, and **b)** as a tutorial, *especially* as a tutorial of bleeding-edge, not-yet-finalised technical tools, it is to be *expected* that the student will discover errors made at times and wish to go back to the last known-good build. Without source control, that can be highly problematic.
@@ -113,11 +115,7 @@ These also can be argued as beyond the scope of the original tutorial, but would
 
 It would be extremely straightforward to spin up a `Dockerfile` to run the app (and/or the app tests) in a Docker image, particularly since we've already spun up [Docker for the data source](#docker-for-the-data-source). Among other things, this would serve as a "self-hosting CI setup" by proving, without relying on an external commercial service, that no unknown/undocumented dependencies on the development system are required for the app and its tests to run correctly. Orchestration of what would then be two containers coule be achieved using `docker-compose` or equivalent.
 
-## Competent Modern Styling
-
-Rather than the current two kitchen-sink CSS files where styling for any and all components get thrown into the soup, we'd much prefer to associate (non-inline by default, CSS-based) styling more directly with individual components. This could use something like [`styled-components`](https://github.com/styled-components/styled-components).
-
-The alternative, or a useful intermediate step, would be to break up the existing CSS files into per-component files plus a common reset/master shared style file, all using SCSS rather than old-school CSS. Let's *at least* have variables and nested styles that make reuse practical and organisation obvious.
+Using Docker for other development-support tasks that ordinarily require a terminal window or tab to be dedicated, such as the `watch-css` script, would be a nice feature as well.
 
 # Contributions
 
