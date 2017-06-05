@@ -1,34 +1,31 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { Container, Divider, Header } from 'semantic-ui-react';
 
 import MovieData from '../MovieData';
 
+import './Movies.css';
+
+import MovieItemContainer from './MovieItemContainer';
+
 const movies = new MovieData().get();
 
-const keyForMovie = (movie) => {
-  const releaseDate = new Date(movie.released + ' GMT-7'); // West Coast-ish
-  return ([movie.name, releaseDate.getFullYear()].join('-'));
+const Movies = ({ className }) => (
+  <Container className={className}>
+    <Header>Movies</Header>
+    <Divider vertical><hr /></Divider>
+    <MovieItemContainer movies={movies} />
+  </Container>
+);
+
+Movies.propTypes = {
+  className: PropTypes.string,
 };
 
-const Movies = () => (
-  <div className="all-movies">
-    <h2 className="movies-header">
-      Movies
-    </h2>
-
-    <hr />
-
-    <div className="movie-listings">
-      {movies.map((movie) => (
-        <div key={keyForMovie(movie)} className="movie-image">
-          <Link to={`/movies/${movie.id}`}>
-            <img alt={movie.name} src={movie.image} />
-          </Link>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+Movies.defaultProps = {
+  className: "all-movies",
+};
 
 export default Movies;

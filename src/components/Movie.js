@@ -4,47 +4,25 @@ import PropTypes from 'prop-types';
 
 import MovieData from '../MovieData';
 
+import MovieContainer from './Movie/Container';
+import MovieDetailContainer from './Movie/DetailContainer';
+import MovieImage from './Movie/Image';
+import MovieMetadata from './Movie/Metadata';
+import MovieReviews from './Movie/Reviews';
+import MovieTitle from './Movie/Title';
+
 const Movie = ({ match: { params: { movieId } } }) => {
   const movie = new MovieData().find({ id: parseInt(movieId, 10) })[0];
 
   return (
-    <div className="movie">
-      <div className="movie-title">
-        <h2>{movie.name}</h2>
-
-        <hr />
-      </div>
-
-      <div className="movie-container">
-        <div className="movie-image">
-          <img alt={movie.name} src={movie.image} />
-        </div>
-
-        <div className="movie-information">
-          <p><b>Director:</b> {movie.director}</p>
-          <p><b>Release Date:</b> {movie.released}</p>
-          <p><b>Description:</b> {movie.description} </p>
-        </div>
-      </div>
-
-      <div className="movie-reviews">
-        <h2>Reviews</h2>
-
-        <hr />
-
-        {/* eslint-disable react/no-array-index-key */}
-        {/* Normally a good idea; we don't (now) support reordering, etc. */}
-        {movie.reviews.map((review, i) => (
-          <div key={i} className="movie-review">
-            <h3>
-              {review.title} <span className="review-author">by {review.author}</span>
-            </h3>
-
-            <p>{review.body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <MovieContainer>
+      <MovieTitle name={movie.name} />
+      <MovieDetailContainer>
+        <MovieImage name={movie.name} image={movie.image} />
+        <MovieMetadata movie={movie} />
+      </MovieDetailContainer>
+      <MovieReviews reviews={movie.reviews} />
+    </MovieContainer>
   );
 };
 

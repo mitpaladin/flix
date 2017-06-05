@@ -1,0 +1,8 @@
+
+@import '../../common.scss';
+
+@mixin movie-text-box {
+  background-color: $textBoxColour;
+  box-shadow: 0px 5px 10px 0px $textBoxShadowColour;
+  padding: 1.6rem;
+}

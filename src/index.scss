@@ -1,0 +1,24 @@
+
+@import 'common.scss';
+
+// FIXME: This is an SUI class name. Oops.
+.container {
+  margin: 0 auto;
+  width: 980px;
+}
+
+hr {
+  margin-bottom: 15px;
+  background-color: $hilightColour;
+  height: 1px;
+  border: 0;
+}
+
+.movie-image {
+  order: 1;
+  padding-right: 20px;
+}
+
+.movie-container {
+  display: flex;
+}

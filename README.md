@@ -9,9 +9,11 @@
   * [Linting](#linting)
   * [Data Source](#data-source)
   * [Docker (for the Data Source)](#docker-for-the-data-source)
-- [Possible Future Enhancements](#possible-future-enhancements)
   * [Design Language, or CSS Framework](#design-language-or-css-framework)
+    + [CSS Preprocessing](#css-preprocessing)
+- [Possible Future Enhancements](#possible-future-enhancements)
   * [Docker (for the app server and tests)](#docker-for-the-app-server-and-tests)
+  * [Competent Modern Styling](#competent-modern-styling)
 - [Contributions](#contributions)
 - [License](#license)
 
@@ -91,17 +93,31 @@ As mentioned previously, we now use the (excellent) [`typicode/json-server`](htt
 
 To run our data server in a Docker container, exposing its JSON API via port 3456, simply run `yarn run movies-docker`. To run the server using a different port, run something like `MOVIES_PORT=8765 yarn run movies-docker-port`. Then also set a `MOVIES_PORT=8765` environment variable when running `yarn test`, `yarn coverage`, or `yarn start` so that the client can find your relocated server.
 
+## Design Language, or CSS Framework
+
+Having the markup, and the components encapsulating the markup, use a popular "design language" CSS framework such as [Semantic UI](https://semantic-ui.com),  via its [React](http://react.semantic-ui.com/introduction) component set, makes integrating styling into React apps more natural and less error-prone than dealing with raw HTML styling directly. After extensive experience with Bootstrap, our current preference is for Semantic UI and their relatively mature, comprehensive React component set. PRs using [Twitter Bootstrap](https://getbootstrap.com/), [Material Design](https://material.io/), [Zurb Foundation](http://foundation.zurb.com/), or others would be entertained.
+
+### CSS Preprocessing
+
+Ordinary CSS is brittle, clunky, verbose, and often seemingly needlessly confusing. This is perhaps not surprising once one realises that it originated from the same mindset that thought that XML was going to take over the world. Few people who've maintained a CSS codebase for any length of time are proud of their efforts (beyond the effort required to get them to work).
+
+[Sass](http://www.sass-lang.com/), particularly its SCSS variant, is a popular, mature language that compiles to vanilla CSS. It adds extensions such as variables, nesting and mixins. It has useful functions that support writing clear, readily-understandable code without relying on inscrutable constants. (Quick: if you encountered the colour `#e29d1d`, would you be able to even approximately visualise it? How about if you read `wheat.darken(33%)`?) Most developers of our acquaintance, including this writer, consider themselves very poor designers, typically after having done battle with CSS. With *S*CSS, at least maintaining consistency becomes practical.
+
+Adding SCSS to the project was tedious but straightforward, and [well-documented](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc) in the *Create React App* README. The procedure will produce vanilla CSS output files in the same directory as the SCSS source; e.g., a `src/foo/bar/baz.scss` file will compile to `src/foo/bar/baz.css`, and *the latter* is what should be [imported](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet) into JavaScript using Webpack.
+
 # Possible Future Enhancements
 
 These also can be argued as beyond the scope of the original tutorial, but would make interesting and/or useful enhancements to the state of the application [when initial requirements had been completed](https://github.com/jdickey/flix/commit/87b8b50). None of these was included, or even hinted at, in the [original tutorial](https://www.sigient.com/blog/movie-listings-application-with-react-router-v-4), which I tend to view as failings in that tutorial rather than "bling" to "weigh down" the development cycle. It should be noted that the tutorial made no use of Git, or any other version control system, despite the facts that **a)** no responsible developer starts a modern project without using source control, and **b)** as a tutorial, *especially* as a tutorial of bleeding-edge, not-yet-finalised technical tools, it is to be *expected* that the student will discover errors made at times and wish to go back to the last known-good build. Without source control, that can be highly problematic.
 
-## Design Language, or CSS Framework
-
-Having the markup, and the components encapsulating the markup, use one of the popular "design language" CSS frameworks, such as [Semantic UI](https://semantic-ui.com), [Twitter Bootstrap](http://getbootstrap.com), or [Google Material Design](https://material.io/guidelines/material-design/introduction.html). All three have [React](http://react.semantic-ui.com/introduction) [component](https://react-bootstrap.github.io) [sets](http://www.material-ui.com/) available, with varying levels of maturity, that make integrating styling into React apps more natural and less error-prone than dealing with raw HTML styling directly. After extensive experience with Bootstrap, [my](https://jdickey.github.io) current preference is for Semantic UI and their relatively mature, comprehensive React component set, but PRs using either of the others, or ones I don't yet know about, would be entertained.
-
 ## Docker (for the app server and tests)
 
 It would be extremely straightforward to spin up a `Dockerfile` to run the app (and/or the app tests) in a Docker image, particularly since we've already spun up [Docker for the data source](#docker-for-the-data-source). Among other things, this would serve as a "self-hosting CI setup" by proving, without relying on an external commercial service, that no unknown/undocumented dependencies on the development system are required for the app and its tests to run correctly. Orchestration of what would then be two containers coule be achieved using `docker-compose` or equivalent.
+
+## Competent Modern Styling
+
+Rather than the current two kitchen-sink CSS files where styling for any and all components get thrown into the soup, we'd much prefer to associate (non-inline by default, CSS-based) styling more directly with individual components. This could use something like [`styled-components`](https://github.com/styled-components/styled-components).
+
+The alternative, or a useful intermediate step, would be to break up the existing CSS files into per-component files plus a common reset/master shared style file, all using SCSS rather than old-school CSS. Let's *at least* have variables and nested styles that make reuse practical and organisation obvious.
 
 # Contributions
 

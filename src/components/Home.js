@@ -1,32 +1,24 @@
 
 import React from 'react';
+import { Container, Divider } from 'semantic-ui-react';
 
 import MovieData from '../MovieData';
 
-import FeaturedMovie from './FeaturedMovie';
+import FeaturedMoviesContainer from './FeaturedMoviesContainer';
+import FeaturedMoviesHeader from './FeaturedMoviesHeader';
 
 const Home = () => {
-  // const topFour = movies.slice(0, 4);
-  const topFour = new MovieData().get(4);
+
+  const count = 4;
+
+  const featured = new MovieData().get(count);
 
   return (
-    <div>
-      <h2 className="featured-movies__header">
-        Featured Movies
-      </h2>
-
-      <hr />
-
-      <div className="featured-movies">
-        {/* Remember, "key" is meaningful only to React for managing lists */}
-        {topFour.map((movie) => (
-          <FeaturedMovie
-            movie={movie}
-            key={[movie.name, movie.director].join('.')}
-          />
-        ))}
-      </div>
-    </div>
+    <Container>
+      <FeaturedMoviesHeader />
+      <Divider vertical><hr /></Divider>
+      <FeaturedMoviesContainer featured={featured} />
+    </Container>
   );
 };
 

@@ -19,3 +19,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# We now use SCSS compiled to CSS via node-sass-chokidar, as per CRA README
+src/**/*.css

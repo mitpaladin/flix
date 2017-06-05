@@ -25,38 +25,32 @@ describe('<Movies />', () => {
       expect(allMovies.children()).toHaveLength(3);
     });
 
-    it('has a non-empty ".movies-header" H2 element as its first child', () => {
+    it('has a "Movies" Header component as its first child', () => {
       const el = allMovies.childAt(0);
-      expect(el.name()).toBe('h2');
-      expect(el.prop('className')).toBe('movies-header');
-      expect(el.text()).toBeTruthy();
+      expect(el.name()).toBe('Header');
+      expect(el.children).toHaveLength(1);
+      expect(el.text()).toBe('Movies');
     });
 
-    it('has an HR as the second element', () => {
-      const el = allMovies.childAt(1);
-      expect(el.name()).toBe('hr');
+    it('has a Divider component as the second element', () => {
+      expect(allMovies.childAt(1).name()).toBe('Divider');
     });
 
-    it('has a ".movie-listings" div as its third child element', () => {
+    it('has a MovieItemContainer component as its third child element', () => {
       const el = allMovies.childAt(2);
-      expect(el.name()).toBe('div');
-      expect(el.prop('className')).toBe('movie-listings');
+      expect(el.name()).toBe('MovieItemContainer');
+      expect(el.children()).not.toHaveLength(0);
     });
 
     describe('has a third child element that', () => {
       const movieListings = allMovies.childAt(2);
 
-      it('has at least one "movie-image" div as child elements', () => {
-        const matches = movieListings.children().find('div.movie-image');
-        expect(matches.length).toBeGreaterThan(0);
+      it('has MovieItem components (only) as child elements', () => {
+        const matches = movieListings.children().find('MovieItem');
+        expect(movieListings.children()).toHaveLength(matches.length);
       });
 
-      it('has no child elements other than "movie-image" divs', () => {
-        const others = movieListings.children().not('div.movie-image');
-        expect(others).toHaveLength(0);
-      });
-
-      describe('for each "movie-image" div child element', () => {
+      describe('for each MovieItem child component', () => {
         const listings = movieListings.children();
 
         it('has one child element', () => {

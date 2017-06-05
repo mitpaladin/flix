@@ -6,7 +6,7 @@ import PageNotFound from './PageNotFound';
 
 describe('<PageNotFound />', () => {
   const wrapper = mount(<PageNotFound />);
-  const content = wrapper.find('.page-not-found');
+  const content = wrapper.find('.ui.page-not-found');
   const expectedText = "We're sorry. This page doesn't exist!";
 
   it('renders a single component', () => {

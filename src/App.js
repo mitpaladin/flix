@@ -2,6 +2,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
+import { Container } from 'semantic-ui-react';
+
 import './App.css';
 
 import Home from './components/Home';
@@ -18,14 +20,14 @@ const App = () => (
         <Link to="/movies">Movies</Link>
       </div>
 
-      <div className="container">
+      <Container>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/movies" exact component={Movies} />
           <Route path="/movies/:movieId" component={Movie} />
           <Route path="*" component={PageNotFound} />
         </Switch>
-      </div>
+      </Container>
     </div>
   </Router>
 )

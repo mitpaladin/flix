@@ -1,0 +1,17 @@
+
+@import '../common.scss';
+
+.featured-movie {
+  text-align: left;
+  width: 24%;
+
+  .item {
+    margin: 0;
+    cursor: default;
+    padding-bottom: 0.25rem;
+
+    &:first-child {
+      padding-top: 1rem;
+    }
+  }
+}
