@@ -13,7 +13,6 @@
     + [CSS Preprocessing](#css-preprocessing)
 - [Possible Future Enhancements](#possible-future-enhancements)
   * [Docker (for the app server and tests)](#docker-for-the-app-server-and-tests)
-  * [Competent Modern Styling](#competent-modern-styling)
 - [Contributions](#contributions)
 - [License](#license)
 
